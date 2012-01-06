@@ -1,0 +1,15 @@
+{
+  "name": "google-places",
+  "description": "node.js client for google places API",
+  "version": "0.0.1",
+  "homepage": "http://github.com/jpowers/node-google-places",
+  "author": "Jay Powers <jay@vermonster.com>",
+  "scripts":{"test":"node ./test/index.test.js"},
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jpowers/node-google-places.git"
+  },
+  "dependencies"  : ["underscore", "url"],
+  "main": "./lib/google-places.js"
+}
+
