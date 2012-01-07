@@ -6,8 +6,7 @@ have a Google API key. For more infor on the API check out the [Google API Docs]
 ## Install
 
 ```
-npm install node-google-places
-
+npm install google-places
 ```
 
 ## Usage
