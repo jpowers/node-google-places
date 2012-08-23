@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/jpowers/node-google-places.png)](http://travis-ci.org/jpowers/node-google-places)
 # node-google-places
 
 Google Places lib for [node.js](http://nodejs.org). Search and look up places via the Google Places API. This lib requires that you
