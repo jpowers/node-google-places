@@ -4,12 +4,14 @@
   "version": "0.0.1",
   "homepage": "http://github.com/jpowers/node-google-places",
   "author": "Jay Powers <jay@vermonster.com>",
+  "contributors": ["Marcin Wiśniowski <shfx@shfx.pl> (http://shfx.pl)"],
   "scripts":{"test":"node ./test/index.test.js"},
   "repository": {
     "type": "git",
     "url": "http://github.com/jpowers/node-google-places.git"
   },
   "dependencies"  : ["underscore", "url"],
+  "devDependencies": ["vows", "node-fakeweb"],
   "main": "./lib/google-places.js"
 }
 

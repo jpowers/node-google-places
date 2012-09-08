@@ -1,7 +1,7 @@
 # node-google-places
 
-Google Places lib for [node.js](http://nodejs.org). Search and look up places via the Google Places API. This lib requires that you
-have a Google API key. For more infor on the API check out the [Google API Docs](http://code.google.com/apis/maps/documentation/places/)
+Google Places lib for [node.js](http://nodejs.org). Search, look up and autocomplete places via the Google Places API. This lib requires that you
+have a Google API key. For more infor on the API check out the [Google Places API Docs](http://code.google.com/apis/maps/documentation/places/)
 
 ## Install
 
@@ -10,25 +10,45 @@ npm install google-places
 ```
 
 ## Usage
-```
+```js
 var GooglePlaces = require('google-places');
 
-var places = new GooglePlaces('your_key');
+var places = new GooglePlaces('YOUR_API_KEY');
 
 places.search({keyword: 'Vermonster'}, function(err, response) {
-  console.log(response.results);
+  console.log("search: ", response.results);
 
   places.details({reference: response.results[0].reference}, function(err, response) {
-    console.log(response.result.website);
-    // http://www.vermonster.com
+    console.log("search details: ", response.result.website);
+    // search details:  http://www.vermonster.com/
   });
-
 });
 
+places.autocomplete({input: 'Verm', types: "(cities)"}, function(err, response) {
+  console.log("autocomplete: ", response.predictions);
+
+  var success = function(err, response) {
+    console.log("did you mean: ", response.result.name);
+    // did you mean:  Vermont
+    // did you mean:  Vermont South
+    // did you mean:  Vermilion
+    // did you mean:  Vermillion
+  };
+
+  for(var index in response.predictions) {
+    places.details({reference: response.predictions[index].reference}, success);
+  }
+});
 ```
 
 ## Features
-Currently only the search and details are supported.  I hope to add checkin soon.
+Currently search, autocomplete and details are supported. I hope to add checkin soon.
+
+## Test
+
+To test simply install development dependencies and run:
+
+`vows test/* --spec`
 
 ## License
 
