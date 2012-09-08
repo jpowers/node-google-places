@@ -44,6 +44,12 @@ places.autocomplete({input: 'Verm', types: "(cities)"}, function(err, response) 
 ## Features
 Currently search, autocomplete and details are supported. I hope to add checkin soon.
 
+## Test
+
+To test simply install development dependencies and run:
+
+`vows test/* --spec`
+
 ## License
 
 The MIT License (MIT)
