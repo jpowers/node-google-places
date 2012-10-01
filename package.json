@@ -1,7 +1,7 @@
 {
   "name": "google-places",
   "description": "node.js client for google places API",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "http://github.com/jpowers/node-google-places",
   "author": "Jay Powers <jay@vermonster.com>",
   "contributors": ["Marcin Wiśniowski <shfx@shfx.pl> (http://shfx.pl)"],
