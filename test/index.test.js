@@ -7,7 +7,7 @@ fakeweb.allowNetConnect = false;
 
 // fake the search
 fakeweb.registerUri({
-  uri: 'https://maps.googleapis.com/maps/api/place/search/json?location=42.357799%2C-71.0536364&radius=10&sensor=false&language=en&&key=fake_key',
+  uri: 'https://maps.googleapis.com/maps/api/place/search/json?location=42.357799%2C-71.0536364&radius=10&sensor=false&language=en&rankby=prominence&key=fake_key',
   body: '{"results" : [{"name": "Vermonster", "id":"1"}], "status" : "OK"}'
 });
 // fake the autocomplete
