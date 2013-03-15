@@ -13,6 +13,7 @@ places.search({keyword: 'Vermonster'}, function(err, response) {
 });
 
 places.autocomplete({input: 'Verm', types: "(cities)"}, function(err, response) {
+  if(err) { console.log(err); return; }
   console.log("autocomplete: ", response.predictions);
 
   var success = function(err, response) {
