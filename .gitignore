@@ -2,3 +2,4 @@
 *.tpm
 example.js
 node_modules
+.env
