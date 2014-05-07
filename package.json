@@ -10,7 +10,7 @@
     "type": "git",
     "url": "http://github.com/jpowers/node-google-places.git"
   },
-  "dependencies"  : ["underscore", "url"],
+  "dependencies"  : ["underscore", "url", "request"],
   "devDependencies": ["vows", "node-fakeweb"],
   "main": "./lib/google-places.js"
 }
