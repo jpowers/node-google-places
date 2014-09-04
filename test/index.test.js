@@ -17,7 +17,7 @@ fakeweb.registerUri({
 });
 //fake the details
 fakeweb.registerUri({
-  uri: 'https://maps.googleapis.com/maps/api/place/details/json?reference=ABC123&language=en&key=fake_key',
+  uri: 'https://maps.googleapis.com/maps/api/place/details/json?placeid=ABC123&language=en&key=fake_key',
   body: '{"result" : {"rating": 2.5}, "status" : "OK"}'
 });
 
@@ -83,7 +83,7 @@ vows.describe('Places autocomplete').addBatch({
 vows.describe('Place details').addBatch({
   'new search': {
     topic: function() {
-      new GooglePlaces('fake_key').details({reference: 'ABC123'}, this.callback);
+      new GooglePlaces('fake_key').details({placeid: 'ABC123'}, this.callback);
     },
     'should get details': function(err, response){
       assert.equal(response.result.rating, 2.5);
