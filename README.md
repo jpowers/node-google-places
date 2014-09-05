@@ -19,7 +19,7 @@ var places = new GooglePlaces('YOUR_API_KEY');
 places.search({keyword: 'Vermonster'}, function(err, response) {
   console.log("search: ", response.results);
 
-  places.details({reference: response.results[0].reference}, function(err, response) {
+  places.details({placeid: response.results[0].place_id}, function(err, response) {
     console.log("search details: ", response.result.website);
     // search details:  http://www.vermonster.com/
   });
@@ -37,7 +37,7 @@ places.autocomplete({input: 'Verm', types: "(cities)"}, function(err, response) 
   };
 
   for(var index in response.predictions) {
-    places.details({reference: response.predictions[index].reference}, success);
+    places.details({placeid: response.predictions[index].place_id}, success);
   }
 });
 ```

@@ -7,17 +7,17 @@ fakeweb.allowNetConnect = false;
 
 // fake the search
 fakeweb.registerUri({
-  uri: 'https://maps.googleapis.com/maps/api/place/search/json?location=42.357799%2C-71.0536364&radius=10&sensor=false&language=en&rankby=prominence&key=fake_key',
+  uri: 'https://maps.googleapis.com/maps/api/place/search/json?location=42.357799%2C-71.0536364&radius=10&language=en&rankby=prominence&key=fake_key',
   body: '{"results" : [{"name": "Vermonster", "id":"1"}], "status" : "OK"}'
 });
 // fake the autocomplete
 fakeweb.registerUri({
-  uri: 'https://maps.googleapis.com/maps/api/place/autocomplete/json?language=en&sensor=false&key=fake_key',
+  uri: 'https://maps.googleapis.com/maps/api/place/autocomplete/json?language=en&key=fake_key',
   body: '{"predictions" : [{"description": "Vermonster", "id":"1"}, {"description": "Vermont", "id":"2"}, {"description": "Vermilion", "id": "3"}], "status" : "OK"}'
 });
 //fake the details
 fakeweb.registerUri({
-  uri: 'https://maps.googleapis.com/maps/api/place/details/json?reference=ABC123&sensor=false&language=en&key=fake_key',
+  uri: 'https://maps.googleapis.com/maps/api/place/details/json?placeid=ABC123&language=en&key=fake_key',
   body: '{"result" : {"rating": 2.5}, "status" : "OK"}'
 });
 
@@ -83,7 +83,7 @@ vows.describe('Places autocomplete').addBatch({
 vows.describe('Place details').addBatch({
   'new search': {
     topic: function() {
-      new GooglePlaces('fake_key').details({reference: 'ABC123'}, this.callback);
+      new GooglePlaces('fake_key').details({placeid: 'ABC123'}, this.callback);
     },
     'should get details': function(err, response){
       assert.equal(response.result.rating, 2.5);

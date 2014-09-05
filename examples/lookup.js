@@ -9,7 +9,7 @@ places.search({keyword: 'Vermonster'}, function(err, response) {
   if(err) { console.log(err); return; }
   console.log("search: ", response.results);
 
-  places.details({reference: response.results[0].reference}, function(err, response) {
+  places.details({placeid: response.results[0].place_id}, function(err, response) {
     if(err) { console.log(err); return; }
     console.log("search details: ", response.result.website);
   });
@@ -25,6 +25,6 @@ places.autocomplete({input: 'Verm', types: "(cities)"}, function(err, response) 
   };
 
   for(var index in response.predictions) {
-    places.details({reference: response.predictions[index].reference}, success);
+    places.details({placeid: response.predictions[index].place_id}, success);
   }
 });
