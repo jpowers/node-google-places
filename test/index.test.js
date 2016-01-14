@@ -1,5 +1,6 @@
 var GooglePlaces = require('../lib/google-places'),
     vows = require('vows'),
+    url = require('url'),
     fakeweb = require('node-fakeweb'),
     assert = require('assert');
 
@@ -21,20 +22,29 @@ fakeweb.registerUri({
   body: '{"result" : {"rating": 2.5}, "status" : "OK"}'
 });
 
+fakeweb.registerUri({
+  uri: 'https://maps.googleapis.com/maps/api/place/details/json?reference=ABC123&sensor=false&language=en&key=bad_key',
+  statusCode: 200,
+  body: '{"error_message" : "The provided API key is invalid.", "html_attributions" : [], "status" : "REQUEST_DENIED" }'
+});
+
 vows.describe('Url generation').addBatch({
   'default url': {
     topic: new GooglePlaces('fake_key'),
 
     'should have a default url for place search': function(topic) {
-      assert.equal(topic._generateUrl({}, 'search').href, 'https://maps.googleapis.com/maps/api/place/search/json?key=fake_key');
+      var targetUrl = url.parse(topic._generateUrl({}, 'search'));
+      assert.equal(targetUrl.href, 'https://maps.googleapis.com/maps/api/place/search/json?key=fake_key');
     },
 
     'should have a default url for place autocomplete': function(topic) {
-      assert.equal(topic._generateUrl({}, 'autocomplete').href, 'https://maps.googleapis.com/maps/api/place/autocomplete/json?key=fake_key');
+      var targetUrl = url.parse(topic._generateUrl({}, 'autocomplete'));
+      assert.equal(targetUrl.href, 'https://maps.googleapis.com/maps/api/place/autocomplete/json?key=fake_key');
     },
 
     'should have my key as a query param': function(topic) {
-      assert.equal(topic._generateUrl({key: 'fake_key'}, 'search').query, 'key=fake_key');
+      var targetUrl = url.parse(topic._generateUrl({key: 'fake_key'}, 'search'));
+      assert.equal(targetUrl.query, 'key=fake_key');
     }
   }
 }).export(module);
